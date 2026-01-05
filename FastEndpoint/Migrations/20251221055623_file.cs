@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace BaseApi.Migrations
+namespace FastEndPoint.Migrations
 {
     /// <inheritdoc />
     public partial class filee : Migration

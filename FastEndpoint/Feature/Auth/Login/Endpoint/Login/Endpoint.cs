@@ -1,8 +1,10 @@
-﻿using FastEndpoints.Security;
+﻿using FastEndpoint;
+using FastEndpoints.Security;
 using System.Security.Claims;
+using FastEndPoint.Feature.Domain;
 using System.Collections.Concurrent;
 
-namespace IdentityServer.Feature.Endpoint;
+namespace FastEndPoint.Feature.Endpoint;
 
 public class AuthLogin(AppDbContext db) : Endpoint<AuthLoginRequest, AuthLoginResponse>
 {

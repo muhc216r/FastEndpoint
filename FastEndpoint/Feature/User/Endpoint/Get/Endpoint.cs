@@ -1,4 +1,7 @@
-﻿namespace BaseApi.Feature.Endpoint;
+﻿using FastEndpoint;
+using FastEndPoint.Feature.Domain;
+
+namespace FastEndPoint.Feature.Endpoint;
 public class UserGet(AppDbContext db) : EndpointWithoutRequest<UserGetResponse>
 {
     public override void Configure()

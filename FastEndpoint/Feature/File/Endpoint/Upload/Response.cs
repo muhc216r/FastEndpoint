@@ -1,2 +1,2 @@
-﻿namespace BaseApi.Feature.Endpoint;
+﻿namespace FastEndPoint.Feature.Endpoint;
 public record FileUploadResponse(string Link, string Size);

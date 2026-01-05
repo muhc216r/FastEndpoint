@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace IdentityServer.Feature.Endpoint;
+namespace FastEndPoint.Feature.Endpoint;
 public class AuthLoginResponse
 {
     public AuthLoginResponse(string token, string refreshToken)

@@ -1,4 +1,4 @@
-﻿namespace IdentityServer.Feature.Domain;
+﻿namespace FastEndPoint.Feature.Domain;
 
 public class StoreRefreshToken(int userId)
 {

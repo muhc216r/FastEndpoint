@@ -1,4 +1,4 @@
-﻿namespace BaseApi.Feature.Domain;
+﻿namespace FastEndPoint.Feature.Domain;
 public class StoredFile
 {
     public StoredFile(string extension, string contentType, string storagePath)

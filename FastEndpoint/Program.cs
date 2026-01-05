@@ -1,12 +1,10 @@
 global using Common;
 global using FastEndpoints;
-global using BaseApi;
 global using Common.Extension;
-global using BaseApi.Feature.Domain;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-using BaseApi.Feature.Job;
+using FastEndpoint;
 using FastEndpoints.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);

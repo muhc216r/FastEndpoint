@@ -1,4 +1,7 @@
-﻿namespace IdentityServer.Feature.Endpoint;
+﻿using FastEndpoint;
+using FastEndPoint.Feature.Domain;
+
+namespace FastEndPoint.Feature.Endpoint;
 sealed class AuthLoginValidator : IPreProcessor<AuthLoginRequest>
 {
     public async Task PreProcessAsync(IPreProcessorContext<AuthLoginRequest> context, CancellationToken cancellation)

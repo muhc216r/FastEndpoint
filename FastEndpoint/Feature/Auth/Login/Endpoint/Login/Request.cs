@@ -1,2 +1,2 @@
-﻿namespace IdentityServer.Feature.Endpoint;
+﻿namespace FastEndPoint.Feature.Endpoint;
 public record AuthLoginRequest(string Username, string Password);

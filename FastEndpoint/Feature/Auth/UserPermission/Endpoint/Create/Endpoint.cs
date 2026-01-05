@@ -1,6 +1,8 @@
-﻿using System.Collections.Concurrent;
+﻿using FastEndpoint;
+using FastEndPoint.Feature.Domain;
+using System.Collections.Concurrent;
 
-namespace IdentityServer.Feature.Endpoint;
+namespace FastEndPoint.Feature.Endpoint;
 public class CreateOrUpdateUserPermission(AppDbContext db) : Endpoint<CreateOrUpdateUserPermissionRequest>
 {
     public static readonly ConcurrentDictionary<int, StoreRefreshToken> RefreshTokens = new();

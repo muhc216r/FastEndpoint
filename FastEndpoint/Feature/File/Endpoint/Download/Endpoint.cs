@@ -1,4 +1,7 @@
-﻿namespace BaseApi.Feature.Endpoint;
+﻿using FastEndpoint;
+using FastEndPoint.Feature.Domain;
+
+namespace FastEndPoint.Feature.Endpoint;
 public class FileDownload(AppDbContext db) : Endpoint<FileDownloadRequest>
 {
     public override void Configure()

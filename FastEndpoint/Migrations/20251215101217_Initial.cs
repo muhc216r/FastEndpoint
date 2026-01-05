@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace BaseApi.Migrations
+namespace FastEndPoint.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

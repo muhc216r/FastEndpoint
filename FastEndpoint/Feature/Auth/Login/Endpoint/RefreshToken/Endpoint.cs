@@ -1,7 +1,9 @@
-﻿using FastEndpoints.Security;
+﻿using FastEndpoint;
+using FastEndPoint.Feature.Domain;
+using FastEndpoints.Security;
 using System.Security.Claims;
 
-namespace IdentityServer.Feature.Endpoint;
+namespace FastEndPoint.Feature.Endpoint;
 public class AuthRefreshToken(IHttpContextAccessor httpContext,AppDbContext db) : Endpoint<AuthRefreshTokenRequest, AuthLoginResponse>
 {
     public override void Configure()

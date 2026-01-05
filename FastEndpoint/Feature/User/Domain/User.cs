@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Security.Cryptography;
 
-namespace BaseApi.Feature.Domain;
+namespace FastEndPoint.Feature.Domain;
 public class User
 {
     public User(string? firstName, string? lastName, string userName, string password)

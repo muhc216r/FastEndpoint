@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace BaseApi.Feature.Endpoint;
+namespace FastEndPoint.Feature.Endpoint;
 public class FileDownloadRequest
 {
     [FromRoute]

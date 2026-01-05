@@ -1,4 +1,4 @@
-﻿namespace IdentityServer.Feature.Endpoint;
+﻿namespace FastEndPoint.Feature.Endpoint;
 sealed class AuthRefreshTokenValidator(IHttpContextAccessor httpContext): IPreProcessor<AuthRefreshTokenRequest>
 {
     public Task PreProcessAsync(IPreProcessorContext<AuthRefreshTokenRequest> context, CancellationToken cancellation)

@@ -1,4 +1,6 @@
-﻿namespace BaseApi.Feature.Endpoint;
+﻿using FastEndPoint.Feature.Domain;
+
+namespace FastEndPoint.Feature.Endpoint;
 public class UserGetResponse(User user)
 {
     public int Id { get; } = user.Id;
