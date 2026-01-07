@@ -15,7 +15,7 @@ builder.Services
     .AddAuthConfig(AppConfig.SigningKey, AppConfig.Issuer, AppConfig.Audience)
     .AddAuthApiKeyConfig<ApiKeyAuthService>()
     .AddFastEndpoints()
-    .AddSwaggerConfig();
+    .AddSwaggerConfig(true);
 //.AddJobQueues<JobRecord, JobStorageProvider>()
 
 
