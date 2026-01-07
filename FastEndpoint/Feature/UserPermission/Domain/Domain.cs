@@ -12,11 +12,3 @@ public class UserPermission
     public int UserId { get; private set; }
     public string Permission { get; private set; }
 }
-
-public class UserPermissionConfiguration : IEntityTypeConfiguration<UserPermission>
-{
-    public void Configure(EntityTypeBuilder<UserPermission> builder)
-    {
-        builder.Property(x => x.Permission).HasMaxLength(500);
-    }
-}
