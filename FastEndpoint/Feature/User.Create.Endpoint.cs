@@ -1,7 +1,6 @@
-﻿using FastEndpoint;
-using FastEndPoint.Feature.Domain;
+﻿using FastEndPoint.Feature.Domain;
 
-namespace FastEndPoint.Feature.Endpoint;
+namespace FastEndpoint.Feature.Endpoint;
 public class UserCreate (AppDbContext db): Endpoint<UserCreateRequest, int>
 {
     public override void Configure()

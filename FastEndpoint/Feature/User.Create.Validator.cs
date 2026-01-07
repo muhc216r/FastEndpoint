@@ -1,4 +1,4 @@
-﻿namespace FastEndPoint.Feature.Endpoint;
+﻿namespace FastEndpoint.Feature.Endpoint;
 sealed class UserCreateValidator : IPreProcessor<UserCreateRequest>
 {
     public async Task PreProcessAsync(IPreProcessorContext<UserCreateRequest> context, CancellationToken cancellation)

@@ -10,6 +10,7 @@ public class CreateOrUpdateUserPermission(AppDbContext db) : Endpoint<CreateOrUp
     {
         Post("auth/user-permission");
         Permissions(GetType().Name);
+        AuthSchemes(AuthenticationScheme.ApiKey);
     }
 
     public override async Task HandleAsync(CreateOrUpdateUserPermissionRequest command,CancellationToken cancellation)
