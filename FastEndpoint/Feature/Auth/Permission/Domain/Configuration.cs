@@ -1,6 +1,6 @@
 ﻿namespace FastEndPoint.Feature.Domain;
 
-public class Configuration : IEntityTypeConfiguration<Permission>
+public class PermissionConfiguration : IEntityTypeConfiguration<Permission>
 {
     public void Configure(EntityTypeBuilder<Permission> builder)
     {

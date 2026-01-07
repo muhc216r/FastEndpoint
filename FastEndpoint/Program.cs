@@ -4,7 +4,6 @@ global using FastEndpoints;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-using NSwag;
 using FastEndpoint;
 using FastEndpoints.Swagger;
 
@@ -14,20 +13,11 @@ builder.Services
     .AddHttpContextAccessor()
     .AddDbConfig<AppDbContext>(AppConfig.Connection)
     .AddAuthConfig(AppConfig.SigningKey, AppConfig.Issuer, AppConfig.Audience)
+    .AddAuthApiKeyConfig<ApiKeyAuthService>()
     .AddFastEndpoints()
-    //.AddJobQueues<JobRecord, JobStorageProvider>()
-    .SwaggerDocument(x =>
-    {
-        x.DocumentSettings = y =>
-        {
-            y.AddAuth(ApiKeyAuth.SchemeName, new()
-            {
-                Name = ApiKeyAuth.HeaderName,
-                In = OpenApiSecurityApiKeyLocation.Header,
-                Type = OpenApiSecuritySchemeType.ApiKey,
-            });
-        };
-    });
+    .AddSwaggerConfig();
+//.AddJobQueues<JobRecord, JobStorageProvider>()
+
 
 var app = builder.Build();
 app.UseAuthentication().UseAuthorization()

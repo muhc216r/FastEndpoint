@@ -9,10 +9,9 @@ using Microsoft.AspNetCore.Authentication;
 public class ApiKeyAuthService(IOptionsMonitor<AuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, AppDbContext db)
     : AuthenticationHandler<AuthenticationSchemeOptions>(options, logger, encoder)
 {
-    public const string HeaderName = "x-api-key";
     protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
     {
-        Request.Headers.TryGetValue(HeaderName, out var apiKey);
+        Request.Headers.TryGetValue(Authentication.ApiKeyHeader, out var apiKey);
         if (await db.Set<ApiKey>().SingleOrDefaultAsync(x => x.Key == apiKey) == null)
         {
             return AuthenticateResult.Fail("Invalid API credentials!");

@@ -1,12 +1,14 @@
 ﻿using FastEndpoints.Security;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Common;
+
 public static partial class ServiceConfig
 {
-    public static IServiceCollection AddAuthConfig(this IServiceCollection services, string signingKey, string issuer, string audience)
+    public static IServiceCollection AddAuthConfig(this IServiceCollection services, string signingKey, string issuer, string audience,
+        IAuthenticationHandler? apiKeyAuthHandler = null)
     {
 
         services
@@ -18,6 +20,7 @@ public static partial class ServiceConfig
                 x.Audience = audience;
             })
             .Configure<JwtSigningOptions>(x => { x.SigningKey = signingKey; })
+
             .AddAuthenticationJwtBearer(x => { },
                 x =>
                 {
@@ -26,12 +29,22 @@ public static partial class ServiceConfig
                 })
             .AddAuthorization();
 
-        services.AddAuthentication(options =>
-        {
-            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        })
-       .AddScheme<AuthenticationSchemeOptions, ApiKeyAuth>(ApiKeyAuth.SchemeName, null);
+        return services;
+    }
+}
+
+public static partial class ServiceConfig
+{
+    public static IServiceCollection AddAuthApiKeyConfig<TAuthApiKeyService>(this IServiceCollection services)
+        where TAuthApiKeyService : AuthenticationHandler<AuthenticationSchemeOptions>
+    {
+        services
+            .AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+            .AddScheme<AuthenticationSchemeOptions, TAuthApiKeyService>(Authentication.ApiKeyScheme, null);
 
         return services;
     }
@@ -43,8 +56,9 @@ public static partial class AuthConfig
     public readonly static TimeSpan RefreshTokenLifetime = Util.Environment.IsProduction() ? TimeSpan.FromHours(4) : TimeSpan.FromDays(1);
 }
 
-public static class AuthenticationScheme
+public static class Authentication
 {
-    public const string JwtBearer = "Bearer";
-    public const string ApiKey = "ApiKey";
+    public const string JwtBearerScheme = "Bearer";
+    public const string ApiKeyScheme = "ApiKey";
+    public const string ApiKeyHeader = "x-api-key";
 }
