@@ -1,6 +1,6 @@
 global using Common;
-global using Common.Extension;
 global using FastEndpoints;
+global using Common.Extension;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

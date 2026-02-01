@@ -7,10 +7,8 @@ namespace Common;
 
 public static partial class ServiceConfig
 {
-    public static IServiceCollection AddAuthConfig(this IServiceCollection services, string signingKey, string issuer, string audience,
-        IAuthenticationHandler? apiKeyAuthHandler = null)
+    public static IServiceCollection AddAuthConfig(this IServiceCollection services, string signingKey, string issuer, string audience)
     {
-
         services
             .Configure<JwtCreationOptions>(x =>
             {
