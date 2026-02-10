@@ -1,5 +1,4 @@
-﻿using FastEndpoint;
-using FastEndPoint.Feature.Domain;
+﻿using FastEndPoint.Feature.Domain;
 
 namespace FastEndpoint.Feature.Endpoint;
 public class UserGet(AppDbContext db) : EndpointWithoutRequest<UserGetResponse>
