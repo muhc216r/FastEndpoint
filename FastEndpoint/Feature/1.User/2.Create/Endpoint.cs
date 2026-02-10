@@ -16,7 +16,7 @@ public class UserCreate (AppDbContext db): Endpoint<UserCreateRequest, int>
     {
         var user = new User(command.FirstName,command.LastName,command.UserName,command.Password);
         db.Set<User>().Add(user);
-        await db.SaveChangesAsync(cancellation);
+        await db.SaveChangesAsync();
         Response = user.Id;
     }
 }
