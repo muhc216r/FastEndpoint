@@ -19,18 +19,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Feature\2.UserPermission\CreateOrUpdate\" />
-    <Folder Include="Feature\2.UserPermission\Domain\" />
-    <Folder Include="Feature\3.Auth\ApiKey\Domain\" />
-    <Folder Include="Feature\3.Auth\ApiKey\Service\" />
-    <Folder Include="Feature\3.Auth\Login\" />
-    <Folder Include="Feature\3.Auth\Permission\Domain\" />
-    <Folder Include="Feature\3.Auth\Permission\Endpoint\" />
-    <Folder Include="Feature\3.Auth\RefreshToken\Domain\" />
-    <Folder Include="Feature\3.Auth\RefreshToken\Endpoint\" />
-    <Folder Include="Feature\5.File\Domain\" />
-    <Folder Include="Feature\5.File\Download\" />
-    <Folder Include="Feature\5.File\Upload\" />
+    <Folder Include="Feature\2.UserPermission\2.CreateOrUpdate\" />
+    <Folder Include="Feature\2.UserPermission\1.Domain\" />
+    <Folder Include="Feature\3.Auth\2.ApiKey\Domain\" />
+    <Folder Include="Feature\3.Auth\2.ApiKey\Service\" />
+    <Folder Include="Feature\3.Auth\1.Login\" />
+    <Folder Include="Feature\3.Auth\4.Permission\Domain\" />
+    <Folder Include="Feature\3.Auth\4.Permission\Endpoint\" />
+    <Folder Include="Feature\3.Auth\3.RefreshToken\Domain\" />
+    <Folder Include="Feature\3.Auth\3.RefreshToken\Endpoint\" />
+    <Folder Include="Feature\4.File\1.Domain\" />
+    <Folder Include="Feature\4.File\2.Download\" />
+    <Folder Include="Feature\4.File\3.Upload\" />
   </ItemGroup>
 
 </Project>
