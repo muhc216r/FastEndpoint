@@ -1,5 +1,4 @@
 ﻿namespace FastEndPoint.Feature.Domain;
-
 public class FileConfiguration : IEntityTypeConfiguration<StoredFile>
 {
     public void Configure(EntityTypeBuilder<StoredFile> builder)
