@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Force include User feature
+!**/Feature/1.User/
+!**/Feature/1.User/**

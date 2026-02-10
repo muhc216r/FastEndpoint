@@ -18,4 +18,19 @@
     <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Feature\2.UserPermission\CreateOrUpdate\" />
+    <Folder Include="Feature\2.UserPermission\Domain\" />
+    <Folder Include="Feature\3.Auth\ApiKey\Domain\" />
+    <Folder Include="Feature\3.Auth\ApiKey\Service\" />
+    <Folder Include="Feature\3.Auth\Login\" />
+    <Folder Include="Feature\3.Auth\Permission\Domain\" />
+    <Folder Include="Feature\3.Auth\Permission\Endpoint\" />
+    <Folder Include="Feature\3.Auth\RefreshToken\Domain\" />
+    <Folder Include="Feature\3.Auth\RefreshToken\Endpoint\" />
+    <Folder Include="Feature\5.File\Domain\" />
+    <Folder Include="Feature\5.File\Download\" />
+    <Folder Include="Feature\5.File\Upload\" />
+  </ItemGroup>
+
 </Project>
