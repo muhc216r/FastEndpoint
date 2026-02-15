@@ -18,12 +18,4 @@
     <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Feature\3.Auth\1.Login\" />
-    <Folder Include="Feature\3.Auth\4.Permission\Domain\" />
-    <Folder Include="Feature\3.Auth\4.Permission\Endpoint\" />
-    <Folder Include="Feature\3.Auth\3.RefreshToken\Domain\" />
-    <Folder Include="Feature\3.Auth\3.RefreshToken\Endpoint\" />
-  </ItemGroup>
-
 </Project>
