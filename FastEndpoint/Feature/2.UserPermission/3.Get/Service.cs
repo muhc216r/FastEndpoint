@@ -1,9 +1,9 @@
 ﻿using FastEndPoint.Feature.Domain;
 using Microsoft.Extensions.Caching.Memory;
-using System.Reflection;
 
 namespace FastEndpoint.Feature.Service;
 
+[RegisterService<UserPermissionService>(LifeTime.Scoped)]
 public class UserPermissionService(IMemoryCache cache, AppDbContext db)
 {
     private static string Key(string userId) => $"user:{userId}:permissions";
@@ -28,24 +28,4 @@ public class UserPermissionService(IMemoryCache cache, AppDbContext db)
     }
 
     public void Invalidate(string userId) => cache.Remove(Key(userId));
-}
-
-
-public static class MemoryCacheDebug
-{
-    public static IEnumerable<object> Dump(IMemoryCache cache)
-    {
-        if (cache is not MemoryCache memCache)
-            yield break;
-
-        var entriesProp = typeof(MemoryCache).GetProperty(
-            "EntriesCollection",
-            BindingFlags.NonPublic | BindingFlags.Instance);
-
-        var entries = entriesProp?.GetValue(memCache) as dynamic;
-        if (entries == null) yield break;
-
-        foreach (var item in entries)
-            yield return item;
-    }
 }
