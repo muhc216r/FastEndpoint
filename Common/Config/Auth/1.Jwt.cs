@@ -15,7 +15,6 @@ public static partial class ServiceConfig
                 x.ExpireAt = DateTime.UtcNow.Add(AuthConfig.TokenLifetime);
                 x.Issuer = issuer;
                 x.Audience = audience;
-                x.CompressionAlgorithm = CompressionAlgorithms.Deflate;
                 x.KeyIsPemEncoded = true;
             })
             .Configure<JwtSigningOptions>(x =>
