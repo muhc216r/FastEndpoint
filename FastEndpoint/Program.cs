@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddHttpContextAccessor()
     .AddDbConfig<AppDbContext>(AppConfig.Connection)
-    .AddAuthConfig(AppConfig.SigningKey, AppConfig.Issuer, AppConfig.Audience)
+    .AddAuthConfig(AppConfig.Issuer, AppConfig.Audience)
     .AddAuthApiKeyConfig<ApiKeyAuthService>()
     .AddFastEndpoints()
     .AddSwaggerConfig(true);

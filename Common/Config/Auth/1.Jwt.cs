@@ -3,10 +3,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Common;
-
 public static partial class ServiceConfig
 {
-    public static IServiceCollection AddAuthConfig(this IServiceCollection services, string publicKey, string issuer, string audience)
+    public static IServiceCollection AddAuthConfig(this IServiceCollection services, string issuer, string audience)
     {
         services
             .Configure<JwtCreationOptions>(x =>
@@ -21,7 +20,7 @@ public static partial class ServiceConfig
             })
             .Configure<JwtSigningOptions>(x =>
             {
-                x.SigningKey = publicKey;
+                x.SigningKey = File.ReadAllText("Common/jwt-public.pem");
                 x.SigningStyle = TokenSigningStyle.Asymmetric;
             });
 
