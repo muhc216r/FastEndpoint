@@ -26,7 +26,7 @@ public class AuthLogin(AppDbContext db) : Endpoint<AuthLoginRequest, AuthLoginRe
         {
             x.SigningKey = File.ReadAllText("Common/jwt-private-key.pem");
             x.User.Claims.Add(new Claim("UserId", user.Id.ToString()));
-            //x.User.Permissions.AddRange(permissions);
+            x.User.Permissions.AddRange(permissions);
             //x.User.Roles.Add("Role1", "Role2");
         });
 
