@@ -22,11 +22,9 @@ public class AuthLogin(AppDbContext db) : Endpoint<AuthLoginRequest, AuthLoginRe
         var permissions = await db.Set<Permission>().Select(x => x.Name).ToArrayAsync(cancellation);
         //var permissions=await db.Set<UserPermission>().Where(x=>x.UserId==userId).Select(x=>x.Permission).ToArrayAsync();
 
-        var privateKeyPem= await File.ReadAllTextAsync("Common/jwt-private.pem", cancellation);
         var token = JwtBearer.CreateToken(x =>
         {
-            x.SigningKey = privateKeyPem;
-            x.KeyIsPemEncoded = true;
+            x.SigningKey = File.ReadAllText("Common/jwt-private-key.pem");
             x.User.Claims.Add(new Claim("UserId", user.Id.ToString()));
             x.User.Permissions.AddRange(permissions);
             //x.User.Roles.Add("Role1", "Role2");

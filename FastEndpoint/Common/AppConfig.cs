@@ -1,4 +1,5 @@
 ﻿namespace FastEndpoint;
+
 public static class AppConfig
 {
     public const string Connection = "Server=.;Database=FastEndPoint;Trusted_Connection=True;TrustServerCertificate=True;";

@@ -15,12 +15,13 @@ public static partial class ServiceConfig
                 x.ExpireAt = DateTime.UtcNow.Add(AuthConfig.TokenLifetime);
                 x.Issuer = issuer;
                 x.Audience = audience;
-                x.CompressionAlgorithm = SecurityAlgorithms.Aes128CbcHmacSha256;
+                x.CompressionAlgorithm = CompressionAlgorithms.Deflate;
                 x.KeyIsPemEncoded = true;
             })
             .Configure<JwtSigningOptions>(x =>
             {
-                x.SigningKey = File.ReadAllText("Common/jwt-public.pem");
+                x.SigningKey = File.ReadAllText("Common/jwt-public-key.pem");
+                x.KeyIsPemEncoded = true;
                 x.SigningStyle = TokenSigningStyle.Asymmetric;
             });
 
