@@ -10,14 +10,12 @@ using FastEndpoints.Swagger;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
-    .AddHttpContextAccessor()
-    .AddDbConfig<AppDbContext>(AppConfig.Connection)
-    .AddAuthConfig(AppConfig.Issuer, AppConfig.Audience)
-    .RegisterServicesFromFastEndpoint()
-    .AddMemoryCache()
-    .AddAuthApiKeyConfig<ApiKeyAuthService>()
     .AddFastEndpoints()
-    .AddSwaggerConfig(true);
+    .AddSwaggerConfig(true)
+    .AddHttpContextAccessor()
+    .AddAuthApiKeyConfig<ApiKeyAuthService>()
+    .AddDbConfig<AppDbContext>(AppConfig.Connection)
+    .AddAuthConfig(AppConfig.Issuer, AppConfig.Audience);
 //.AddJobQueues<JobRecord, JobStorageProvider>()
 
 
