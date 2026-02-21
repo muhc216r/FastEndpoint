@@ -10,6 +10,7 @@ public static partial class ServiceConfig
         services
             .Configure<JwtCreationOptions>(x =>
             {
+                x.SigningKey = File.ReadAllText("Common/jwt-private-key.pem");
                 x.SigningStyle = TokenSigningStyle.Asymmetric;
                 x.SigningAlgorithm = SecurityAlgorithms.RsaSha256;
                 x.ExpireAt = DateTime.UtcNow.Add(AuthConfig.TokenLifetime);

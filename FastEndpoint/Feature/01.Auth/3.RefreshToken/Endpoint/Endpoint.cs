@@ -1,7 +1,7 @@
 ﻿using FastEndpoint;
-using FastEndPoint.Feature.Domain;
 using FastEndpoints.Security;
 using System.Security.Claims;
+using FastEndPoint.Feature.Domain;
 
 namespace FastEndPoint.Feature.Endpoint;
 public class AuthRefreshToken(IHttpContextAccessor httpContext,AppDbContext db) : Endpoint<AuthRefreshTokenRequest, AuthLoginResponse>
@@ -15,13 +15,15 @@ public class AuthRefreshToken(IHttpContextAccessor httpContext,AppDbContext db) 
     public override async Task HandleAsync(AuthRefreshTokenRequest request, CancellationToken cancellation)
     {
         var passIsValid = true;
-        var userId=httpContext.UserId()!.Value;
+        var userId= httpContext.UserId().HasValue ? httpContext.UserId()!.Value:1;
         if (passIsValid)
         {
-            var token = JwtBearer.CreateToken(async x => {
+            var permissions = await db.Set<Permission>().Select(x => x.Name).ToArrayAsync(cancellation);
+            var token = JwtBearer.CreateToken(async x =>
+            {
+                x.SigningKey = File.ReadAllText("Common/jwt-private-key.pem");
                 x.User.Claims.Add(new Claim(ClaimTypes.NameIdentifier, userId.ToString()));
 
-                var permissions=await db.Set<Permission>().Select(x=>x.Name).ToArrayAsync();
                 x.User.Permissions.AddRange(permissions);
                 /*
                     u.Roles.Add("Admin");
