@@ -6,6 +6,7 @@ public class UserGet(AppDbContext db) : EndpointWithoutRequest<UserGetResponse>
     public override void Configure()
     {
         Get("user/{id}");
+        //AuthSchemes(Authentication.ApiKeyScheme);
         Permissions(GetType().Name);
     }
 
