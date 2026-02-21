@@ -6,14 +6,14 @@ sealed class AuthRefreshTokenValidator(IHttpContextAccessor httpContext): IPrePr
         var userId = httpContext.UserId().GetValueOrDefault();
 
         var exists = AuthLogin.RefreshTokens.TryGetValue(userId, out var storedToken);
-        if (!exists)throw new Exception("refresh token not found!");
+        if (!exists)throw new Exception(MessageResource.NotFound);
 
         if (!string.Equals(context!.Request!.Token, storedToken!.Token, StringComparison.Ordinal))
         {
-            throw new Exception("refresh token is invalid!");
+            throw new Exception(MessageResource.Invalid);
         }
 
-        if (storedToken.Expiry < DateTime.UtcNow) throw new Exception("refresh token has expired!");
+        if (storedToken.Expiry < DateTime.UtcNow) throw new Exception(MessageResource.Expired);
 
         return Task.CompletedTask;
     }

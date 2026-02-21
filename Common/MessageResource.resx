@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Expired" xml:space="preserve">
+    <value>منقضی شده</value>
+  </data>
+  <data name="Invalid" xml:space="preserve">
+    <value>نامعتبر</value>
+  </data>
   <data name="InvalidUsernameOrPassword" xml:space="preserve">
     <value>نام کاربری یا رمز عبور اشتباه است.</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>یافت نشد</value>
   </data>
   <data name="ValidationError" xml:space="preserve">
     <value>!خطای اعتبارسنجی</value>
