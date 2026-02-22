@@ -10,6 +10,7 @@ using FastEndpoints.Swagger;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
+    .AddMemoryCache()
     .AddFastEndpoints()
     .AddSwaggerConfig(true)
     .AddHttpContextAccessor()

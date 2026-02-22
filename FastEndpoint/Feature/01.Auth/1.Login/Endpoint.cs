@@ -2,12 +2,10 @@
 using FastEndpoints.Security;
 using System.Security.Claims;
 using FastEndPoint.Feature.Domain;
-using System.Collections.Concurrent;
 
 namespace FastEndPoint.Feature.Endpoint;
 public class AuthLogin(AppDbContext db) : Endpoint<AuthLoginRequest, AuthLoginResponse>
 {
-    public static readonly ConcurrentDictionary<int, StoreRefreshToken> RefreshTokens = new();
     public override void Configure()
     {
         Post("auth/login");

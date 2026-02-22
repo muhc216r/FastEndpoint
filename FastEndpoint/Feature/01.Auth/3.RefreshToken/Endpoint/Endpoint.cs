@@ -1,15 +1,18 @@
 ﻿using FastEndpoint;
-using FastEndpoints.Security;
 using System.Security.Claims;
+using FastEndpoints.Security;
 using FastEndPoint.Feature.Domain;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace FastEndPoint.Feature.Endpoint;
-public class AuthRefreshToken(IHttpContextAccessor httpContext,AppDbContext db) : Endpoint<AuthRefreshTokenRequest, AuthLoginResponse>
+public class AuthRefreshToken(IHttpContextAccessor httpContext,AppDbContext db, IMemoryCache cache) 
+    : Endpoint<AuthRefreshTokenRequest, AuthLoginResponse>
 {
+    private const string RefreshKeyPrefix = "refresh_token:user:";
     public override void Configure()
     {
         Post("auth/refresh-token");
-        //PreProcessor<AuthRefreshTokenRequest>();
+        PreProcessor<AuthRefreshTokenRequest>();
     }
 
     public override async Task HandleAsync(AuthRefreshTokenRequest request, CancellationToken cancellation)
@@ -37,7 +40,15 @@ public class AuthRefreshToken(IHttpContextAccessor httpContext,AppDbContext db) 
             });
 
             var refreshToken = new StoreRefreshToken(userId);
-            AuthLogin.RefreshTokens.AddOrUpdate(refreshToken.UserId, refreshToken, (_, __) => refreshToken);
+            var cacheKey = $"{RefreshKeyPrefix}{userId}";
+            cache.Set(
+                key: cacheKey,
+                value: refreshToken,
+                options: new MemoryCacheEntryOptions
+                {
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(24),
+                    // SlidingExpiration = TimeSpan.FromDays(2)
+                });
             Response = new AuthLoginResponse(token, refreshToken.Token);
         }
     }
