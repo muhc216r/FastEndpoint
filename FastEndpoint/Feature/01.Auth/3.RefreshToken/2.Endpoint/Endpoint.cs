@@ -8,7 +8,7 @@ namespace FastEndPoint.Feature.Endpoint;
 public class AuthRefreshToken(IHttpContextAccessor httpContext,AppDbContext db, IMemoryCache cache) 
     : Endpoint<AuthRefreshTokenRequest, AuthLoginResponse>
 {
-    private const string RefreshKeyPrefix = "refresh_token:user:";
+    
     public override void Configure()
     {
         Post("auth/refresh-token");

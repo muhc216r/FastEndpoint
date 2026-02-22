@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Common;
+
 public static partial class ServiceConfig
 {
     public static IServiceCollection AddAuthConfig(this IServiceCollection services, string issuer, string audience)
