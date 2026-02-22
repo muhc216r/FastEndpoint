@@ -14,6 +14,7 @@ builder.Services
     .AddFastEndpoints()
     .AddSwaggerConfig(true)
     .AddHttpContextAccessor()
+    .RegisterServicesFromFastEndpoint()
     .AddAuthApiKeyConfig<ApiKeyAuthService>()
     .AddDbConfig<AppDbContext>(AppConfig.Connection)
     .AddAuthConfig(AppConfig.Issuer, AppConfig.Audience);

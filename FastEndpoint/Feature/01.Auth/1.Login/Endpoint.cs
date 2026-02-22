@@ -1,10 +1,11 @@
 ﻿using FastEndpoint;
+using FastEndpoint.Feature;
 using FastEndpoints.Security;
 using System.Security.Claims;
 using FastEndPoint.Feature.Domain;
 
 namespace FastEndPoint.Feature.Endpoint;
-public class AuthLogin(AppDbContext db) : Endpoint<AuthLoginRequest, AuthLoginResponse>
+public class AuthLogin(AppDbContext db, RefreshTokenService refreshTokenService) : Endpoint<AuthLoginRequest, AuthLoginResponse>
 {
     public override void Configure()
     {
@@ -29,7 +30,7 @@ public class AuthLogin(AppDbContext db) : Endpoint<AuthLoginRequest, AuthLoginRe
         });
 
         var refreshToken = new StoreRefreshToken(user.Id);
-        RefreshTokens.AddOrUpdate(refreshToken.UserId, refreshToken, (_, __) => refreshToken);
+        refreshTokenService.Add(refreshToken);
         await Send.OkAsync(new AuthLoginResponse(token, refreshToken.Token), cancellation);
     }
 }

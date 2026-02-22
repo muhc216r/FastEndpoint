@@ -1,11 +1,9 @@
 ﻿using FastEndpoint;
 using FastEndPoint.Feature.Domain;
-using System.Collections.Concurrent;
 
 namespace FastEndPoint.Feature.Endpoint;
 public class AuthPermission(AppDbContext db) : EndpointWithoutRequest
 {
-    public static readonly ConcurrentDictionary<int, StoreRefreshToken> RefreshTokens = new();
     public override void Configure()
     {
         Get("auth/permission");

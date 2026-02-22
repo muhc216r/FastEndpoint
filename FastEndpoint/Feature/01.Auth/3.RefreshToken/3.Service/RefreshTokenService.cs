@@ -3,35 +3,26 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace FastEndpoint.Feature;
 
+[RegisterService<RefreshTokenService>(LifeTime.Scoped)]
 public class RefreshTokenService(IMemoryCache cache)
 {
     private const string Prefix = "refresh-token:user:";
-    private static readonly TimeSpan RefreshTokenSlidingExpiration = TimeSpan.FromHours(24);
-    private static readonly TimeSpan RefreshTokenAbsoluteExpiration = TimeSpan.FromHours(24);
 
-
-    public void Save(string userId, StoreRefreshToken refreshToken)
+    public void Add(StoreRefreshToken refreshToken)
     {
-        var cacheKey = $"{Prefix}{userId}";
         cache.Set(
-            key: cacheKey,
+            key: GetKey(refreshToken.UserId),
             value: refreshToken,
-            options: new MemoryCacheEntryOptions
-            {
-                SlidingExpiration = RefreshTokenSlidingExpiration,
-                AbsoluteExpirationRelativeToNow = RefreshTokenAbsoluteExpiration
-            });
+            options: new MemoryCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(1) });
     }
 
-    public bool TryGetRefreshToken(string userId, out StoreRefreshToken? refreshToken)
+    public StoreRefreshToken? Get(int userId)
     {
-        var cacheKey = $"{Prefix}{userId}";
-        return cache.TryGetValue(cacheKey, out refreshToken);
+        cache.TryGetValue(GetKey(userId), out StoreRefreshToken? refreshToken);
+        if(refreshToken != null) cache.Remove(GetKey(userId));
+
+        return refreshToken ;
     }
 
-    public void RemoveRefreshToken(string userId)
-    {
-        var cacheKey = $"{Prefix}{userId}";
-        cache.Remove(cacheKey);
-    }
+    private string GetKey(int userId) => $"{Prefix}{userId}";
 }
