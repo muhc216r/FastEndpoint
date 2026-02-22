@@ -6,8 +6,6 @@ namespace FastEndpoint.Feature;
 [RegisterService<RefreshTokenService>(LifeTime.Scoped)]
 public class RefreshTokenService(IMemoryCache cache)
 {
-    private const string Prefix = "refresh-token:user:";
-
     public void Add(StoreRefreshToken refreshToken)
     {
         cache.Set(
@@ -19,10 +17,10 @@ public class RefreshTokenService(IMemoryCache cache)
     public StoreRefreshToken? Get(int userId)
     {
         cache.TryGetValue(GetKey(userId), out StoreRefreshToken? refreshToken);
-        if(refreshToken != null) cache.Remove(GetKey(userId));
-
-        return refreshToken ;
+        return refreshToken;
     }
 
-    private string GetKey(int userId) => $"{Prefix}{userId}";
+    public void Remove(int userId) => cache.Remove(GetKey(userId));
+
+    private string GetKey(int userId) => $"refresh-token:user:{userId}";
 }
